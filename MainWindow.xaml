@@ -1,0 +1,19 @@
+﻿<Window x:Class="Vizsga.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vizsga"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Label x:Name="VizsganResztvevokSzama" Content="" HorizontalAlignment="Left" Margin="55,34,0,0" VerticalAlignment="Top" Width="170"/>
+        <ListBox x:Name="VizsgazokNevei" Margin="55,65,575,59"/>
+        <Button x:Name="SikeresVizsga" Content="Sikeres vizsgát tett" HorizontalAlignment="Left" Margin="400,65,0,0" VerticalAlignment="Top" Click="SikeresVizsga_Click"/>
+        <Label x:Name="SikeresVizsgaSzoveg" Content="" HorizontalAlignment="Left" Margin="551,62,0,0" VerticalAlignment="Top" Width="112"/>
+        <Button x:Name="FajlbaIras" Content="Eredmények állományba írása" HorizontalAlignment="Left" Margin="400,166,0,0" VerticalAlignment="Top" Click="FajlbaIras_Click"/>
+        <Label Content="Keresett tanuló" HorizontalAlignment="Left" Margin="400,231,0,0" VerticalAlignment="Top" Width="124"/>
+        <TextBox x:Name="KeresettTanulo" HorizontalAlignment="Left" Margin="400,262,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="161" TextChanged="KeresettTanulo_TextChanged"/>
+
+    </Grid>
+</Window>
