@@ -17,14 +17,14 @@ namespace Vizsga
         public float HalozatD { get; set; }
         public float AngolSzobeli { get; set; }
         public float ITSzobeli { get; set; }
-        public float Eredmeny => (HalozatIrasbeli + ProgramozasIrasbeli + HalozatA + HalozatB + HalozatC + HalozatD + AngolSzobeli + ITSzobeli) / 8;
+        public float Vegeredmeny => (HalozatIrasbeli + ProgramozasIrasbeli + HalozatA + HalozatB + HalozatC + HalozatD + AngolSzobeli + ITSzobeli) / 8;
 
-        public string Erdemjegy(float eredmeny)
+        public string Erdemjegy()
         {
-            if (eredmeny < 0.51) return "Elégtelen";
-            else if (eredmeny < 0.61) return "Elégséges";
-            else if (eredmeny < 0.71) return "Közepes";
-            else if (eredmeny < 0.81) return "Jó";
+            if (HalozatIrasbeli <= 0.5 || ProgramozasIrasbeli <= 0.5 || HalozatA <= 0.5 || HalozatB <= 0.5 || HalozatC <= 0.5 || HalozatD <= 0.5 || AngolSzobeli <= 0.5 || ITSzobeli <= 0.5) return "Elégtelen";
+            else if (Vegeredmeny < 0.61 && Vegeredmeny >= 0.51) return "Elégséges";
+            else if (Vegeredmeny < 0.71 && Vegeredmeny >= 0.61) return "Közepes";
+            else if (Vegeredmeny < 0.81 && Vegeredmeny >= 0.71) return "Jó";
             else return "Jeles";
         }
 

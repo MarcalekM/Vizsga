@@ -38,8 +38,7 @@ namespace Vizsga
 
         private void SikeresVizsga_Click(object sender, RoutedEventArgs e)
         {
-            int sikeresekSzama = 0;
-            foreach (var diak in diakok) if (diak.HalozatIrasbeli > 0.5 && diak.ProgramozasIrasbeli > 0.5 &&  diak.HalozatA > 0.5 && diak.HalozatB > 0.5 &&  diak.HalozatC > 0.5 &&  diak.HalozatD > 0.5 &&  diak.AngolSzobeli > 0.5 &&  diak.ITSzobeli > 0.5) sikeresekSzama++;
+            int sikeresekSzama = diakok.Where(d => d.Erdemjegy() != "Elégtelen").Count();
             SikeresVizsgaSzoveg.Content = $"{sikeresekSzama} fő";
         }
 
@@ -48,20 +47,24 @@ namespace Vizsga
             using StreamWriter sw = new(
                 path: @"../../../src/vizsgaeredmenyek.txt",
                 append: false);
-            foreach (var diak in diakok) if (diak.Eredmeny > 0.5) sw.WriteLine($"{diak.Nev}\t{diak.Eredmeny}\t{diak.Erdemjegy(diak.Eredmeny)}");
+            foreach (var diak in diakok) if (diak.Vegeredmeny > 0.5) sw.WriteLine($"{diak.Nev}\t{diak.Vegeredmeny}\t{diak.Erdemjegy()}");
         }
 
         private void KeresettTanulo_TextChanged(object sender, TextChangedEventArgs e)
         {
-            bool NincsTalalat = true;
-            foreach (var diak in diakok)
-            {
-                if (diak.Nev.Contains(KeresettTanulo.Text))
+            if (KeresettTanulo.Text != "") {
+                bool NincsTalalat = true;
+                var diak = diakok.Where(d => d.Nev.Contains(KeresettTanulo.Text)).FirstOrDefault();
+                if (diak != null)
                 {
+                    List<float> eredmenyek = new() { diak.ITSzobeli, diak.AngolSzobeli, diak.HalozatA, diak.HalozatB, diak.HalozatC, diak.HalozatD, diak.ProgramozasIrasbeli, diak.HalozatIrasbeli};
                     NincsTalalat = false;
+                    KeresesiEredmeny.Text = $"Legjobb eredménye: {eredmenyek.Max()}\nLeggyengébb eredménye: {eredmenyek.Min()}\n{(diak.Erdemjegy() != "Elégtelen" ? "Sikeres vizsgát tett" : "Nem sikerült a sikeres vizsgatétel")}";
                 }
+                if (NincsTalalat) MessageBox.Show("Nincs találat");
             }
-            if(NincsTalalat) MessageBox.Show("Nincs találat");
+            else KeresesiEredmeny.Text = "";
+
         }
     }
 }

@@ -14,6 +14,7 @@
         <Button x:Name="FajlbaIras" Content="Eredmények állományba írása" HorizontalAlignment="Left" Margin="400,166,0,0" VerticalAlignment="Top" Click="FajlbaIras_Click"/>
         <Label Content="Keresett tanuló" HorizontalAlignment="Left" Margin="400,231,0,0" VerticalAlignment="Top" Width="124"/>
         <TextBox x:Name="KeresettTanulo" HorizontalAlignment="Left" Margin="400,262,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="161" TextChanged="KeresettTanulo_TextChanged"/>
+        <TextBlock x:Name="KeresesiEredmeny" HorizontalAlignment="Left" Margin="400,285,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="236" Height="66"/>
 
     </Grid>
 </Window>
